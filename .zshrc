@@ -2,6 +2,8 @@
 XDG_CONFIG_HOME="$(dirname ${(%):-%x})/.."
 source "$XDG_CONFIG_HOME/sh/xdg.sh"
 
+export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
+
 # Load Oh My Zsh config
 source "$XDG_CONFIG_HOME/zsh/.zshrc-oh-my-zsh"
 
