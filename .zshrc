@@ -7,6 +7,10 @@ export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
 # Load Oh My Zsh config
 source "$XDG_CONFIG_HOME/zsh/.zshrc-oh-my-zsh"
 
+
+# load local file if it exists
+[ -f "$XDG_CONFIG_HOME/zsh/local" ] && source "$XDG_CONFIG_HOME/zsh/local"
+
 # # Source zsh-specific config
 # source "$XDG_CONFIG_HOME/zsh/shopt.zsh"
 # source "$XDG_CONFIG_HOME/zsh/completion.zsh"
