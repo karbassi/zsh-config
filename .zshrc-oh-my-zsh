@@ -28,7 +28,7 @@ export UPDATE_ZSH_DAYS=30
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -54,20 +54,34 @@ ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-ignore history history-substring-search vi-mode transfer)
+plugins=(git history history-substring-search vi-mode transfer pyenv zsh-autosuggestions fzf)
 
 # User configuration
 
-#export PATH="/usr/local/bin:$PATH"
-#export PATH="/usr/bin:$PATH"
-#export PATH="/bin:$PATH"
-#export PATH="/usr/sbin:$PATH"
-#export PATH="/sbin:$PATH"
-#export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-export PATH="$PATH:`yarn global bin`"
-export MANPATH="/usr/local/man:$MANPATH"
+PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
+[[ -d /usr/local/sbin ]] && PATH="/usr/local/sbin:$PATH"
+[[ -d /usr/local/heroku/bin ]] && PATH="/usr/local/heroku/bin:$PATH"
+[[ -d /usr/local/opt/ruby/bin ]] && PATH="/usr/local/opt/ruby/bin:$PATH"
+[[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
+[[ -d /usr/local/share/npm/bin ]] && PATH="/usr/local/share/npm/bin:$PATH"
+[[ -d /usr/local/opt/coreutils ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+[[ -d /usr/local/opt/gpg-agent/bin ]] && PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+[[ -d $HOME/bin ]] && PATH="$HOME/bin:$PATH"
+[[ -d $HOME/.nvm ]] && PATH="$HOME/.nvm:$PATH"
+[[ -d /usr/local/opt/python@3.8/bin ]] && PATH="/usr/local/opt/python@3.8/bin:$PATH"
+[[ -d /Library/TeX/texbin/ ]] && PATH="/Library/TeX/texbin/:$PATH"
+export PATH
 
-source $ZSH/oh-my-zsh.sh
+MANPATH="/usr/local/man:$MANPATH"
+[[ -d /opt/local/man ]] && MANPATH="/opt/local/man:$MANPATH"
+[[ -d /usr/local/opt/coreutils/share/man ]] && MANPATH="/usr/local/opt/coreutils/share/man:$MANPATH"
+export MANPATH
+
+source "$ZSH/oh-my-zsh.sh"
+
+# Poetry
+#source $HOME/.poetry/env
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -94,7 +108,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. `brew --prefix`/etc/profile.d/z.sh
+source "$(brew --prefix)/etc/profile.d/z.sh"
 
 # Start tmux session 'main'
 #if command -v tmux>/dev/null; then
@@ -103,4 +117,10 @@ fi
 
 eval "$(rbenv init -)"
 
+# github cli
+eval "$(gh completion --shell=zsh)"
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Set GPG tty
+export GPG_TTY=$(tty)
