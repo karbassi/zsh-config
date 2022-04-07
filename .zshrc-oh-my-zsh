@@ -70,7 +70,10 @@ PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
 [[ -d $HOME/bin ]] && PATH="$HOME/bin:$PATH"
 [[ -d $HOME/.nvm ]] && PATH="$HOME/.nvm:$PATH"
 [[ -d /usr/local/opt/python@3.8/bin ]] && PATH="/usr/local/opt/python@3.8/bin:$PATH"
+[[ -d $HOME/Library/Python/3.9/bin ]] && PATH="$HOME/Library/Python/3.9/bin:$PATH"
 [[ -d /Library/TeX/texbin/ ]] && PATH="/Library/TeX/texbin/:$PATH"
+[[ -d $HOME/.poetry/bin ]] && PATH="$HOME/.poetry/bin:$PATH"
+
 export PATH
 
 MANPATH="/usr/local/man:$MANPATH"
@@ -82,6 +85,9 @@ source "$ZSH/oh-my-zsh.sh"
 
 # Poetry
 #source $HOME/.poetry/env
+
+# ASDF
+[[ -d /usr/local/opt/asdf/libexec/ ]] && source /usr/local/opt/asdf/libexec/asdf.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
