@@ -61,6 +61,7 @@ plugins=(git history history-substring-search vi-mode transfer pyenv zsh-autosug
 PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
 [[ -d /usr/local/sbin ]] && PATH="/usr/local/sbin:$PATH"
+[[ -d /opt/homebrew/bin ]] && PATH="/opt/homebrew/bin:$PATH"
 [[ -d /usr/local/heroku/bin ]] && PATH="/usr/local/heroku/bin:$PATH"
 [[ -d /usr/local/opt/ruby/bin ]] && PATH="/usr/local/opt/ruby/bin:$PATH"
 [[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
