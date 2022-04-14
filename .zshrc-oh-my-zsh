@@ -60,28 +60,36 @@ plugins=(git history history-substring-search vi-mode transfer pyenv zsh-autosug
 
 # User configuration
 
+# Set BREW_PREFIX to your local brew prefix
+if [[ -d "/opt/homebrew" ]]; then
+	BREW_PREFIX="/opt/homebrew"
+elif [[ -d "/usr/local/Cellar" ]]; then
+	BREW_PREFIX="/usr/local"
+fi
+
 PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
-[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
-[[ -d /usr/local/sbin ]] && PATH="/usr/local/sbin:$PATH"
-[[ -d /opt/homebrew/bin ]] && PATH="/opt/homebrew/bin:$PATH"
-[[ -d /usr/local/heroku/bin ]] && PATH="/usr/local/heroku/bin:$PATH"
-[[ -d /usr/local/opt/ruby/bin ]] && PATH="/usr/local/opt/ruby/bin:$PATH"
-[[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
-[[ -d /usr/local/share/npm/bin ]] && PATH="/usr/local/share/npm/bin:$PATH"
-[[ -d /usr/local/opt/coreutils ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-[[ -d /usr/local/opt/gpg-agent/bin ]] && PATH="/usr/local/opt/gpg-agent/bin:$PATH"
-[[ -d $HOME/bin ]] && PATH="$HOME/bin:$PATH"
-[[ -d $HOME/.nvm ]] && PATH="$HOME/.nvm:$PATH"
-[[ -d /usr/local/opt/python@3.8/bin ]] && PATH="/usr/local/opt/python@3.8/bin:$PATH"
-[[ -d $HOME/Library/Python/3.9/bin ]] && PATH="$HOME/Library/Python/3.9/bin:$PATH"
-[[ -d /Library/TeX/texbin/ ]] && PATH="/Library/TeX/texbin/:$PATH"
-[[ -d $HOME/.poetry/bin ]] && PATH="$HOME/.poetry/bin:$PATH"
+[[ -d "/usr/local/bin" ]] && PATH="/usr/local/bin:$PATH"
+[[ -d "/usr/local/sbin" ]] && PATH="/usr/local/sbin:$PATH"
+[[ -d "$BREW_PREFIX/bin" ]] && PATH="$BREW_PREFIX/bin:$PATH"
+[[ -d "/usr/local/heroku/bin" ]] && PATH="/usr/local/heroku/bin:$PATH"
+[[ -d "$BREW_PREFIX/opt/ruby/bin" ]] && PATH="$BREW_PREFIX/opt/ruby/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && PATH="$HOME/.local/bin:$PATH"
+[[ -d "/usr/local/share/npm/bin" ]] && PATH="/usr/local/share/npm/bin:$PATH"
+[[ -d "$BREW_PREFIX/opt/coreutils" ]] && PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+[[ -d "$BREW_PREFIX/opt/gpg-agent/bi"n ]] && PATH="$BREW_PREFIX/opt/gpg-agent/bin:$PATH"
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/.nvm" ]] && PATH="$HOME/.nvm:$PATH"
+[[ -d "$BREW_PREFIX/opt/python@3.8/bin" ]] && PATH="$BREW_PREFIX/opt/python@3.8/bin:$PATH"
+[[ -d "$HOME/Library/Python/3.9/bin" ]] && PATH="$HOME/Library/Python/3.9/bin:$PATH"
+[[ -d "$BREW_PREFIX/opt/python@3.9/libexec/bin" ]] && PATH="$BREW_PREFIX/opt/python@3.9/libexec/bin:$PATH"
+[[ -d "/Library/TeX/texbin/" ]] && PATH="/Library/TeX/texbin/:$PATH"
+[[ -d "$HOME/.poetry/bin" ]] && PATH="$HOME/.poetry/bin:$PATH"
 
 export PATH
 
 MANPATH="/usr/local/man:$MANPATH"
 [[ -d /opt/local/man ]] && MANPATH="/opt/local/man:$MANPATH"
-[[ -d /usr/local/opt/coreutils/share/man ]] && MANPATH="/usr/local/opt/coreutils/share/man:$MANPATH"
+[[ -d "$BREW_PREFIX/opt/coreutils/share/man" ]] && MANPATH="$BREW_PREFIX/opt/coreutils/share/man:$MANPATH"
 export MANPATH
 
 source "$ZSH/oh-my-zsh.sh"
@@ -90,7 +98,7 @@ source "$ZSH/oh-my-zsh.sh"
 #source $HOME/.poetry/env
 
 # ASDF
-[[ -d /usr/local/opt/asdf/libexec/ ]] && source /usr/local/opt/asdf/libexec/asdf.sh
+[[ -d "$BREW_PREFIX/opt/asdf/libexec/" ]] && source "$BREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -118,7 +126,7 @@ export EDITOR='$(which vim)'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source "$(brew --prefix)/etc/profile.d/z.sh"
+source "$BREW_PREFIX/etc/profile.d/z.sh"
 
 # Start tmux session 'main'
 #if command -v tmux>/dev/null; then
@@ -134,3 +142,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Set GPG tty
 export GPG_TTY=$(tty)
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
