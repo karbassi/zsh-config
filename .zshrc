@@ -51,3 +51,6 @@ bindkey    "^[3;5~"         delete-char
 # fi
 # [[ -f "$XDG_CONFIG_HOME/zsh/aliases.sh" ]] && .  "$XDG_CONFIG_HOME/zsh/aliases.sh"
 # [[ -f "$XDG_CONFIG_HOME/zsh/saliases.sh" ]] && .  "$XDG_CONFIG_HOME/zsh/saliases.sh"
+
+# bun completions
+[ -s "/Users/ali/.bun/_bun" ] && source "/Users/ali/.bun/_bun"
