@@ -56,7 +56,18 @@ ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history history-substring-search vi-mode transfer pyenv zsh-autosuggestions fzf nvm)
+plugins=(
+	fzf 
+	git 
+	history 
+	history-substring-search 
+	mise
+	nvm 
+	pyenv 
+	transfer 
+	vi-mode 
+	zsh-autosuggestions 
+)
 
 # User configuration
 
